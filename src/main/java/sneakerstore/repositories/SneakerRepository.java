@@ -1,0 +1,12 @@
+package sneakerstore.repositories;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import sneakerstore.entities.Sneaker;
+
+import java.util.List;
+
+@Repository
+public interface SneakerRepository extends CrudRepository<Sneaker, Long> {
+    List<Sneaker> findByModel(String model);
+}
