@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import sneakerstore.dtos.SneakerDTO;
 import sneakerstore.dtos.StockDTO;
 import sneakerstore.entities.Sneaker;
+import sneakerstore.interfaces.SneakerInterface;
 import sneakerstore.mapper.Mapper;
 import sneakerstore.repositories.SneakerRepository;
 
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class SneakerService {
+public class SneakerService implements SneakerInterface {
 
     @Autowired
     private SneakerRepository sneakerRepository;
@@ -26,9 +27,7 @@ public class SneakerService {
     }
 
     public List<SneakerDTO> findAll() {
-        List<Sneaker> list = new ArrayList<>();
-        sneakerRepository.findAll().forEach(list::add);
-        return list.stream()
+        return sneakerRepository.findAll().stream()
                 .map(sneaker -> mapper.convertToDTO(sneaker))
                 .collect(Collectors.toList());
     }
@@ -38,9 +37,7 @@ public class SneakerService {
     }
 
     public List<SneakerDTO> findByModel(String model) {
-        List<Sneaker> list = new ArrayList<>();
-        sneakerRepository.findByModel(model).forEach(list::add);
-        return list.stream()
+        return sneakerRepository.findByModel(model).stream()
                 .map(sneaker -> mapper.convertToDTO(sneaker))
                 .collect(Collectors.toList());
     }
