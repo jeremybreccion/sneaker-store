@@ -3,7 +3,7 @@ package sneakerstore.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sneakerstore.dtos.SneakerDTO;
-import sneakerstore.services.SneakerService;
+import sneakerstore.interfaces.SneakerInterface;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
 public class SneakerController {
 
     @Autowired
-    private SneakerService sneakerService;
+    private SneakerInterface sneakerService;
 
     @PostMapping("/save")
     public void save(@RequestBody SneakerDTO sneakerDTO) {
